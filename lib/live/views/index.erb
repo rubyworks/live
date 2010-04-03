@@ -1,0 +1,77 @@
+<div class="page">
+
+  <div class="labels" style="padding: 20px 0; font-weight: bold;">
+    Facets Live! The revolution is application logic delivery.
+  </div>
+
+  <div class="instructions">
+    <img src="/img/one.jpg" align="left" alt="1."/>
+    <pre>
+    $ sudo gem install live
+    </pre>
+    <img src="/img/two.jpg" align="left" alt="2."/>
+    <pre>
+    require 'live'
+    require 'live/username/script.rb'
+    </pre>
+  </div>
+
+  <div class="labels" style="padding: 20px 0 0px 0; font-weight: bold;">
+    We take you now to live action happening in your neighborhood.
+  </div>
+
+  <div class="monitor">
+    <table style="width: 100%;">
+      <tr><th width="25%">New Scripts</th><th width="25%">Recently Updated</th><th>Most Popular</th><th>Just Downloaded</th></tr>
+      <tr>
+        <td>
+          <ol>
+          <% @scripts_newest.each do |s| %>
+            <li><a href="/script/<%= s.id %>"><%= s.owner %>/<%= s.name %><a></li>
+          <% end %>
+          </ol>
+        </td>
+        <td>
+          <ol>
+          <% @scripts_latest.each do |s| %>
+            <li><a href="/script/<%= s.id %>"><%= s.owner %>/<%= s.name %></a></li>
+          <% end %>
+          </ol>
+        </td>
+        <td>
+          <ol>
+          <% @scripts_popular.each do |s| %>
+            <li><a href="/script/<%= s.id %>"><%= s.owner %>/<%= s.name %></a></li>
+          <% end %>
+          </ol>
+        </td>
+        <td>
+          <ol>
+          <% @scripts_popular.each do |s| %>
+            <li><a href="/script/<%= s.id %>"><%= s.owner %>/<%= s.name %></a></li>
+          <% end %>
+          </ol>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="labels" style="padding: 20px 0; font-weight: bold;">
+    Look deep into my eyes.
+  </div>
+
+  <div style="text-align: left;">
+    <ul>
+    <li><a href="">Facets Live Source</a></li>
+    <li><a href="">Facets Live Wiki</a></li>
+    </ul>
+
+    <p>
+      <img src="/img/ruby-logo.png" align="absmiddle" style="width: 40px;"/> <a href="http://ruby-lang.org">Ruby Programming Language</a> &nbsp;
+      <img src="/img/gem1.png" align="absmiddle" style="width: 45px;"/> <a href="http://rubyworks.github.com/facets">Original Facets</a> &nbsp;
+      <img src="/img/sinatra.gif" align="absmiddle" style="width: 55px;"/> <a href="http://www.sinatrarb.com/">Sinatra Web Framework</a>
+    </p>
+  </div>
+
+</div>
+

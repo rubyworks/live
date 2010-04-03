@@ -1,0 +1,30 @@
+<div id="script-browse" class="page">
+
+  <h1>
+    Scripts 
+    <span style="color: #999; font-size: 0.6em;"> starting with <%= @letter %></span>
+  </h1>
+
+  <div id="script-browse-index">
+    <% ('A'..'Z').each do |letter| %>
+      <a href="/browse/<%= letter %>"><%= letter %></a> &nbsp;
+    <% end %>
+  </div>
+
+  <div id="script-browse-counts">
+    Displaying 1 to <%= @scripts.count %>
+  </div>
+
+  <div id="script-browse-list">
+    <ul>
+    <% @scripts.each do |script| %>
+      <li>
+        <a href="/script/<%= script.id %>"><%= script.owner %>/<%= script.name %>.rb</a><br/>
+        <%= script.description || '(No Descrption)' %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+
+</div>
+

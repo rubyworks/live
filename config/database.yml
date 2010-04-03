@@ -1,0 +1,7 @@
+---
+development:
+  adapter : mysql
+  database: live_development
+  #username: <%= ENV['LIVE_USERNAME'] %>
+  #password: <%= ENV['LIVE_PASSWORD'] %>
+

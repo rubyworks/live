@@ -1,0 +1,58 @@
+<div id="script" class="page">
+
+  <div class="buttons" style="float: right;">
+    <div style="float: left; padding: 10px;">
+      <img src="/img/star.gif" align="bottom" />
+      <input type="checkbox" title="Star" onclick="star('<%= @script.id %>');" 
+        <% if @track && @track.star %>checked="true"<% end %>
+      />
+      <img src="/img/flag.gif" align="bottom" />
+      <input type="checkbox" title="Flag" onclick="flag('<%= @script.id %>');" 
+        <% if @track && @track.flag %>checked="true"<% end %>
+      />
+    </div>
+    <% if @track && @track.watch %>
+      <a href="/unwatch/<%= @script.owner %>/<%= @script.name %>">unwatch</a>
+    <% else %>
+      <a href="/watch/<%= @script.owner %>/<%= @script.name %>">watch</a>
+    <% end %>
+    <a href="/copy/<%= @script.id %>">copy</a>
+    <% if user.username == @script.owner %>
+      <a href="/edit/<%= @script.id %>">edit</a>
+    <% end %>
+  </div>
+
+  <div class="labels" style="margin: 0 0 10px 0; font-weight: bold; font-size: 120%;">
+    live/<%= @script.owner %>/<%= @script.name %>.rb <span style="font-size: 0.8em;">(v.<%= @script.version %>)</span>
+  </div>
+
+  <div class="labels" style="margin: 0 0 20px 0;">
+    <%= @script.description || 'No Description...' %>
+  </div>
+
+  <div class="tabbed-area">
+    <ul class="tabs"> 
+      <li><a href="#">Code</a></li>
+      <li><a href="#">Test</a></li>
+    </ul> 
+     
+    <div class="panes" style="margin-top: 3px;"> 
+      <div><%= @script.code_highlighted %></div> 
+      <div><%= @script.test_highlighted %></div> 
+    </div>
+  </div>
+
+  <div style="margin: 5px 0;">
+    <div class="labels" style="float: right;">
+      <b>Last Editor:</b> <%= @script.modifier %> &nbsp; <b>Last Edited:</b> <%= @script.modified %>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $(document).ready(function() {
+    $("ul.tabs").tabs("div.panes > div");
+  });
+</script>
+

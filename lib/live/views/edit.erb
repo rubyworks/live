@@ -1,0 +1,77 @@
+<form action="/edit" method="post">
+  <div class="script-edit page">
+
+    <div class="buttons" style="float: right;">
+      <% if @script.id %>
+        <a href="/script/<%= @script.id %>">cancel</a>
+      <% else %>
+        <a href="/dashboard">cancel</a>
+      <% end %>
+      <a href="/copy/<%= @script.id %>">copy</a>
+    </div>
+
+    <div class="labels" style="margin: 0 0 10px 0; font-weight: bold; font-size: 120%;">
+      <% if @script.id %>
+        <b>live/<%= @script.owner %>/<%= @script.name %>.rb</b>
+      <% else %>
+        <b>live/<%= @script.owner %>/<input type="text" width="50" name="name" value="<%= @script.name %>" />.rb</b>
+      <% end %>
+    </div>
+
+    <div style="margin: 0 0 20px 0;">
+      <input type="text" name="desc" value="<%= @script.description || 'No description...' %>" size="255" style="width: 99%;" />
+    </div>
+
+    <div class="tabbed-area">
+
+      <ul class="tabs"> 
+        <li><a href="#">Code</a></li>
+        <li><a href="#">Test</a></li>
+      </ul> 
+       
+      <div class="panes"> 
+        <div>
+          <textarea name="code" style="height: 400px; width: 99%;"><%= @script.code %></textarea>
+        </div> 
+        <div style="position: relative;">
+          <textarea name="test" style="height: 400px; width: 99%;"><%= @script.test %></textarea>
+          <select name="test_type" style="position: absolute; top: 0; right: 24px;">
+            <option>Lemon</option>
+            <option>RSpec</option>
+            <option>Test::Unit</option>
+          </select>
+        </div> 
+      </div>
+
+    </div>
+
+    <div style="margin: 5px 0;">
+      <div style="padding: 5px; color: #565656; float: right;">
+        <b>Last Editor:</b> <%= @script.modifier %> &nbsp; <b>Last Edited:</b> <%= @script.modified %>
+      </div>
+
+      <div class="buttons">
+        <% if @script.id %>
+          <a href="/script/<%= @script.id %>">Cancel</a>
+          <button type="submit" value="save">Save</button>
+          <div style="padding: 6px;">
+            <input type="checkbox" value="true" name="bump" /><label for="bump">New Version?</label>
+          </div>
+        <% else %>
+          <a href="/dashboard">Cancel</a>
+          <button type="submit" value="save">Create</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <input type="hidden" name="id" value="<%= @script.id %>"/>
+</form>
+
+<script>
+  $(document).ready(function() {
+    $("ul.tabs").tabs("div.panes > div");
+  });
+</script>
+
+

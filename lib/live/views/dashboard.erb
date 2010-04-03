@@ -1,0 +1,47 @@
+<div id="dashboard" class="page" style="min-height: 350px;">
+
+  <div class="buttons" style="float: right;">
+    <a href="/edit">new script</a>
+  </div>
+
+  <div class="labels" style="margin-bottom: 20px;">
+    <img src="<%= user.gravatar %>" align="absmiddle" /> &nbsp;
+    <b>Welcome, <%= user.username %>.</b>
+  </div>
+
+  <div class="tabbed-area">
+    <ul class="tabs"> 
+      <li><a href="#">Watch List</a></li>
+      <li><a href="#">My Scripts</a></li>
+    </ul>
+
+    <div class="panes" style="margin-top: 3px; border: 1px solid #ccc; padding: 10px;"> 
+      <div>
+        <ul>
+        <% @watchlist.each do |w| %>
+          <li>
+            <a href="/script/<%= w.owner %>/<%= w.name %>"><%= w.owner %>/<%= w.name %>.rb</a><br/>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+      <div>
+        <ul>
+        <% @scripts.each do |s| %>
+          <li><a href="/script/<%= s.id %>"><%= s.name %>.rb</a><br/>
+            <%= s.description %>
+          </li>
+        <% end %>
+        </ul>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  $(document).ready(function() {
+    $("ul.tabs").tabs("div.panes > div");
+  });
+</script>
+
