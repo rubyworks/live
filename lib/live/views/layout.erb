@@ -56,9 +56,13 @@
       <% end %>
       </div>
       <div class="search">
-        <input value="Search scripts..."
+        <form name="search" action="/search" method="POST">
+          <input name="criteria" value="Search scripts..."
                onfocus="if(this.value=='Search scripts...')this.value='';"
-               onblur="if(this.value=='')this.value='Search scripts...';"/>/>
+               onblur="if(this.value=='')this.value='Search scripts...';"
+               onKeyPress="return submit_enter(this,event);"
+          />
+        </form>
       </div>
     </div>
   </div>

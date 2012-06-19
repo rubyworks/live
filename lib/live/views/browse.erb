@@ -1,15 +1,21 @@
 <div id="script-browse" class="page">
 
   <h1>
-    Scripts 
-    <span style="color: #999; font-size: 0.6em;"> starting with <%= @letter %></span>
+    Scripts
+    <% if @criteria %>
+      <span style="color: #999; font-size: 0.6em;"> matching '<%= @criteria %>'</span>
+    <% else %>
+      <span style="color: #999; font-size: 0.6em;"> starting with <%= @letter %></span>
+    <% end %>
   </h1>
 
+  <% unless @criteria %>
   <div id="script-browse-index">
     <% ('A'..'Z').each do |letter| %>
       <a href="/browse/<%= letter %>"><%= letter %></a> &nbsp;
     <% end %>
   </div>
+  <% end %>
 
   <div id="script-browse-counts">
     Displaying 1 to <%= @scripts.count %>

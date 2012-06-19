@@ -109,6 +109,18 @@ module Live
     end
 
     #
+    post '/search' do
+      @title    = "Search"
+      @criteria = params[:criteria]
+      if @criteria
+        @scripts = Script.filter(:archive => nil, :name => /^#{@criteria}/i).order(:name).limit(25)
+      else
+        redirect '/browse/A'
+      end
+      erb :browse
+    end
+
+    #
     get '/browse/:letter' do
       @title  = "Browse"
       @letter = params[:letter]
@@ -146,6 +158,37 @@ module Live
       @script = Script[:archive=>nil, :owner=>owner, :name=>name]
       @track  = Track[:user_id=>user_id, :owner=>@script.owner, :name=>@script.name]
       erb :script
+    end
+
+    #
+    get '/copy/:id/:name' do
+      authorize!('/login')
+
+      id   = params[:id]
+      name = params[:name]
+
+      script = Script[:name=>name,:owner=>user.username]
+      if script
+        flash[:message] = "ERROR! You already have a script named '#{name}'."
+        redirect(back)
+      else
+        orig = Script[:id=>id]
+        vals = orig.values.dup
+        vals.delete(:id)
+        copy = Script.create(vals)
+        copy.name       = name
+        copy.owner      = user.username
+        copy.version    = 1
+        copy.copy       = orig.id
+        copy.rating     = 0
+        copy.downloads  = 0
+        copy.downloaded = Time.now #nil
+        copy.created    = Time.now
+        copy.archive    = nil
+        copy.save
+        @script = copy
+        erb :edit
+      end
     end
 
     # Create new script.

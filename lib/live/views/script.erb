@@ -16,7 +16,7 @@
     <% else %>
       <a href="/watch/<%= @script.owner %>/<%= @script.name %>">watch</a>
     <% end %>
-    <a href="/copy/<%= @script.id %>">copy</a>
+    <button onclick="name_copy('<%= @script.id %>', '<%= @script.name %>');">copy</button>
     <% if user.username == @script.owner %>
       <a href="/edit/<%= @script.id %>">edit</a>
     <% end %>

@@ -32,9 +32,9 @@ module Live
         t.varchar     :description              # brief description
         t.text        :code                     # script's source code
         t.text        :test                     # unit test code
-        t.integer     :rating                   # star rating
+        t.integer     :rating                   # rating # TODO: keep?
         t.integer     :downloads                # number of times this script has been required/loaded (less cache)
-        t.timestamp   :downloaded               # date and time of last require/load
+        t.timestamp   :downloaded, :null=>true  # date and time of last require/load
         t.varchar     :modifier                 # last person to modify the script
         t.timestamp   :modified                 # date and time the script was last modified
         t.timestamp   :created                  # date and time the script was created
